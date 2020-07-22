@@ -1,22 +1,54 @@
 package com.example.keyboard_phrase
 
 import android.annotation.SuppressLint
+import android.content.ClipDescription
 import android.inputmethodservice.InputMethodService
+import android.os.Build
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
+import androidx.core.view.inputmethod.InputConnectionCompat
+import androidx.core.view.inputmethod.InputContentInfoCompat
+
 
 class CustomIME : InputMethodService(), View.OnTouchListener {
-    private val keymap: KeymapHolder = Keymap()
     private var currentKeyId = 0
 
     @SuppressLint("InflateParams")
     override fun onCreateInputView(): View {
-        return layoutInflater.inflate(R.layout.keyboard, null).also { view ->
-            keymap.keys.map { id ->
-                view.findViewById<Button>(id).also { it.setOnTouchListener(this) }
-            }
+        return layoutInflater.inflate(R.layout.keyboard, null)
+    }
+
+    override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
+        super.onStartInputView(info, restarting)
+
+
+    }
+
+    private fun commitText(
+        contentUri: Uri,
+        imageDescription: String,
+        linkUri: Uri
+    ) {
+        val inputContentInfo = InputContentInfoCompat(
+            contentUri,
+            ClipDescription(imageDescription, arrayOf("image/png")),
+            linkUri
+        )
+        val inputConnection = currentInputConnection
+        val editorInfo = currentInputEditorInfo
+        var flags = 0
+        if (Build.VERSION.SDK_INT >= 25) {
+            flags = flags or InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION
         }
+        InputConnectionCompat.commitContent(
+            inputConnection,
+            editorInfo,
+            inputContentInfo,
+            flags,
+            null
+        )
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -30,7 +62,6 @@ class CustomIME : InputMethodService(), View.OnTouchListener {
                 }
                 MotionEvent.ACTION_UP -> {
                     // 押下ボタンに基づいた文字を入力
-                    sendKeyEvent(currentKeyId)
                     currentKeyId = 0
                     false
                 }
@@ -40,18 +71,6 @@ class CustomIME : InputMethodService(), View.OnTouchListener {
             }
         } else {
             true
-        }
-    }
-
-    // キー入力。本来はもっとごちゃごちゃするので簡略化。
-    private fun sendKeyEvent(id: Int) {
-        if (id !in keymap.keys) {
-            return
-        }
-
-        val keyInfo = keymap.getKeyInfo(id)
-        if (keyInfo is KeyInfo.AsciiKeyInfo) {
-            sendKeyChar(keyInfo.char)
         }
     }
 }

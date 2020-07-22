@@ -1,109 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:columnCount="5"
-    tools:context=".Keymap">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <Button
-        android:id="@+id/key_1"
-        android:text="1"
-        style="@style/Key"/>
 
-    <Button
-        android:id="@+id/key_2"
-        android:text="2"
-        style="@style/Key"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/key_3"
-        android:text="3"
-        style="@style/Key"/>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:background="@drawable/tab"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/key_4"
-        android:text="4"
-        style="@style/Key"/>
+    <GridView
+        android:id="@+id/fixedPhraseArea"
+        android:layout_width="match_parent"
+        android:layout_height="147dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:columnWidth="170dp"
+        android:horizontalSpacing="5dp"
+        android:numColumns="2"
+        android:padding="5dp"
+        android:verticalSpacing="5dp" />
 
-    <Button
-        android:id="@+id/key_5"
-        android:text="5"
-        style="@style/Key"/>
+<!--    <GridLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        xmlns:tools="http://schemas.android.com/tools"-->
+<!--        android:columnCount="2"-->
+<!--        android:verticalSpacing="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:layout_marginLeft="24dp"-->
+<!--        android:layout_marginRight="24dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        tools:context=".Keymap">-->
 
-    <Button
-        android:id="@+id/key_6"
-        android:text="6"
-        style="@style/Key"/>
+<!--        <Button-->
+<!--            android:id="@+id/key_1"-->
+<!--            android:text="1"-->
+<!--            style="@style/Key"/>-->
 
-    <Button
-        android:id="@+id/key_7"
-        android:text="7"
-        style="@style/Key"/>
+<!--        <Button-->
+<!--            android:id="@+id/key_2"-->
+<!--            android:text="2"-->
+<!--            style="@style/Key"/>-->
 
-    <Button
-        android:id="@+id/key_8"
-        android:text="8"
-        style="@style/Key"/>
+<!--        <Button-->
+<!--            android:id="@+id/key_3"-->
+<!--            android:text="3"-->
+<!--            style="@style/Key"/>-->
 
-    <Button
-        android:id="@+id/key_9"
-        android:text="9"
-        style="@style/Key"/>
+<!--        <Button-->
+<!--            android:id="@+id/key_4"-->
+<!--            android:text="4"-->
+<!--            style="@style/Key"/>-->
 
-    <Button
-        android:id="@+id/key_10"
-        android:text="10"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_11"
-        android:text="11"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_12"
-        android:text="12"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_13"
-        android:text="13"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_14"
-        android:text="14"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_15"
-        android:text="15"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_16"
-        android:text="16"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_17"
-        android:text="17"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_18"
-        android:text="18"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_19"
-        android:text="19"
-        style="@style/Key"/>
-
-    <Button
-        android:id="@+id/key_20"
-        android:text="20"
-        style="@style/Key"/>
-
-</GridLayout>
+</LinearLayout>
